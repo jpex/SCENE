@@ -1,0 +1,33 @@
+{% include head.html %}
+
+  <div class="hud-top">
+    <header class="header">
+      <div id="logo" class="logo"><a href="/">Jay Gatsby</a></div>
+      <div class="header-links">
+        <a href="#">About</a>
+        <a href="#">Projects</a>
+      </div>
+    </header>
+  </div>
+  <div class="js-transition transition"></div>
+  <div class="hud-left"></div>
+  <div class="hud-right"></div>
+  <div class="hud-bottom"></div>
+
+  <div id="works" class="works">
+    <div class="work work-1">
+      <div class="attachment">
+        <h1>This is a H1 Header</h1>
+      </div>
+    </div>
+    <div class="work work-2 rellax">
+      <div class="experiment rellax2"></div>
+    </div>
+    <div class="work work-3">
+      <h1>Another Big Header</h1>
+
+    </div>
+    {{ content }}
+    <div class="hud-space"></div>
+  </div>
+{% include foot.html %}

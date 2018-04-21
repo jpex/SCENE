@@ -1,0 +1,161 @@
+$font-header: "vendetta",serif;
+$font-body: "Sofia Pro", sofia-pro, helvetica neue, helvetica, sans-serif;
+$bg: blue;
+$ease: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+
+$media-tablet-min: "(min-width: 768px)";
+
+*, *:before, *:after { box-sizing: border-box; }
+
+html {
+  font-size: 1rem;
+  min-height: 100%;
+}
+
+html, body {
+  height: 100%;
+}
+
+html, body, button, input {
+  font-size: 1em;
+  font-family: $font-body;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  //font-family: $font-header;
+}
+
+a {
+  text-decoration: none;
+}
+
+$gutter: 70px;
+
+// Fixed element trick.
+.hud-top, .hud-bottom, .hud-left, .hud-right {
+  position: fixed;
+  background: white;
+  //transition: 0.2s all $ease;
+  //transition-delay: 0.2s;
+}
+
+.hud-top.transparent {
+  background: transparent;
+  color: #FFF;
+  a { color: #FFF; border-color: rgba(#FFF, 0.8); }
+}
+
+.hud-top, .hud-bottom {
+  height: $gutter;
+  width: 100%;
+  z-index: 2;
+}
+
+.hud-left, .hud-right {
+  width: $gutter;
+  height: 100%;
+}
+
+// Helper for the fixed position 'hud'
+.hud-space {
+  width: 100%;
+  height: $gutter;
+}
+
+.hud-bottom { bottom: 0;  }
+.hud-left   { left: 0;   }
+.hud-right  { right: 0;  }
+
+.works {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  transition: 0.5s all $ease;
+  //transition-delay: 0.4s;
+  @media #{$media-tablet-min} {
+    height: calc(100% - #{$gutter} * 2);
+    left: $gutter;
+    top: $gutter;
+    width: calc(100% - #{$gutter} * 2);
+  }
+}
+
+.work {
+  align-items: center;
+  animation: slideInFromBelow 0.6s $ease;
+  background: #c6d5ff;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  width: 100%;
+}
+
+.work-1 { color: #FFF; }
+.work-2 { background: #f0e8e5; }
+.work-3 { background: #ff6151; }
+
+@keyframes slideInFromBelow {
+  0% {
+    transform: translate3d(0,100%,0) scale(0.8);
+  }
+  100% {
+    transform: translate3d(0,0,0) scale(1);
+  }
+}
+
+.experiment {
+  width: 100px;
+  height: 100px;
+  background: yellow;
+  //position: absolute;
+  top: $gutter / 2 * -1;
+  left: $gutter / 2 * -1;
+  z-index: 65535;
+}
+
+h1 {
+  font-weight: 900;
+  font-size: 5em;
+  position: fixed;
+}
+
+.header {
+  align-items: center;
+  display: flex;
+  height: 100%;
+  justify-content: space-between;
+  padding: 0 ($gutter + 8px);
+}
+
+.header-links a {
+  border-bottom: 1px solid #aaa;
+  color: #737373;
+  margin-left: 28px;
+}
+
+.logo {
+  font-family: $font-header;
+  font-size: 1.5em;
+  font-style: italic;
+  font-weight: medium;
+}
+
+.is-main {
+
+}
+
+.appear {
+  width: 100%;
+  left: 0; top: 0;
+}
+
+.grow {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+}
+
+.hide {
+  opacity: 0;
+  height: 0;
+}
