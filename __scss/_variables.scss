@@ -1,0 +1,22 @@
+// Fonts
+$font-header: "vendetta",serif;
+$font-body: "Sofia Pro", sofia-pro, helvetica neue, helvetica, sans-serif;
+
+// Animation
+$ease: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+
+// Gutters
+// JS also needs these values, but does not get them from here.
+$gutter-sm: 40px;
+$gutter:    70px;
+$gutter-lg: 120px;
+
+// Media Queries
+// JS also needs these values, but does not get them from here.
+$m-m-max:  "(max-width: 767px)";
+$m-t-min:  "(min-width: 768px)";
+$m-d-min:  "(min-width: 1280px)";
+$m-ld-min: "(min-width: 1700px)";
+
+// Other
+$bg: blue;

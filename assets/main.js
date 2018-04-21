@@ -1,37 +1,31 @@
----
----
+/*
+    Style Helper
+*/
+let pageWidth = $(window).width(), gutter;
+const mqTablet    = 768,
+      mqDesktop   = 1280,
+      mqLgDesktop = 1700;
 
-// var rellax = new Rellax('.rellax', {
-//     speed: 2
-// });
-//
-// var rellax2 = new Rellax('.rellax2', {
-//     speed: -1
-// });
 
-const gutter = 70,
-      work1  = Math.round($('.work-1').offset().top - gutter),
-      work2  = Math.round($('.work-2').offset().top - gutter),
-      work3  = Math.round($('.work-3').offset().top - gutter);
+function mq() {
+  pageWidth = $(window).width();
+  if (pageWidth < mqTablet) { gutter = 40; }
+  else if (pageWidth >= mqTablet && pageWidth < mqLgDesktop) { gutter = 70; }
+  else { gutter = 120; }
+} mq();
 
-      console.log(work1 + " " + work2 + " " + work3);
+const work1  = Math.round($('.work-1').offset().top),
+      work2  = Math.round($('.work-2').offset().top),
+      work3  = Math.round($('.work-3').offset().top);
 
-$(window).on('scroll', function() {
-  const scroll = Math.round($(this).scrollTop());
-});
-
-function scrollHandler(value, scroll) {
-  console.log(value);
-  console.log(scroll);
-}
 
 $('#works > div').on("click", function() {
   let   that   = $(this);
-  const scroll = that.offset().top - 70;
+  const scroll = that.offset().top;
   const time   = Math.abs($(window).scrollTop() - scroll) + 100;
 
   $('html, body').animate({
-    scrollTop: that.offset().top - 70
+    scrollTop: that.offset().top - gutter
   }, time).promise().done(function() {
     $('#works > .work').addClass('hide');
     that.removeClass('hide').addClass('grow');

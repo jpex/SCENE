@@ -1,9 +1,4 @@
-$font-header: "vendetta",serif;
-$font-body: "Sofia Pro", sofia-pro, helvetica neue, helvetica, sans-serif;
-$bg: blue;
-$ease: cubic-bezier(0.455, 0.03, 0.515, 0.955);
 
-$media-tablet-min: "(min-width: 768px)";
 
 *, *:before, *:after { box-sizing: border-box; }
 
@@ -29,42 +24,6 @@ a {
   text-decoration: none;
 }
 
-$gutter: 70px;
-
-// Fixed element trick.
-.hud-top, .hud-bottom, .hud-left, .hud-right {
-  position: fixed;
-  background: white;
-  //transition: 0.2s all $ease;
-  //transition-delay: 0.2s;
-}
-
-.hud-top.transparent {
-  background: transparent;
-  color: #FFF;
-  a { color: #FFF; border-color: rgba(#FFF, 0.8); }
-}
-
-.hud-top, .hud-bottom {
-  height: $gutter;
-  width: 100%;
-  z-index: 2;
-}
-
-.hud-left, .hud-right {
-  width: $gutter;
-  height: 100%;
-}
-
-// Helper for the fixed position 'hud'
-.hud-space {
-  width: 100%;
-  height: $gutter;
-}
-
-.hud-bottom { bottom: 0;  }
-.hud-left   { left: 0;   }
-.hud-right  { right: 0;  }
 
 .works {
   height: 100%;
@@ -72,7 +31,7 @@ $gutter: 70px;
   position: relative;
   transition: 0.5s all $ease;
   //transition-delay: 0.4s;
-  @media #{$media-tablet-min} {
+  @media #{$m-t-min} {
     height: calc(100% - #{$gutter} * 2);
     left: $gutter;
     top: $gutter;
