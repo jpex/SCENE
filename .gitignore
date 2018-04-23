@@ -2,6 +2,7 @@ _site
 .sass-cache
 .jekyll-metadata
 .git
+.DS_Store
 assets/bundle.js
 node_modules
 Gemfile.lock
