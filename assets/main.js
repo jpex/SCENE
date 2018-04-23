@@ -1,7 +1,7 @@
 /*
     Style Helper
 */
-let   pageWidth   = $(window).width(), gutter;
+let   pageWidth   = $(window).width(), gutter, scrollControl = true;
 const mqTablet    = 768,
       mqDesktop   = 1280,
       mqLgDesktop = 1700;
@@ -18,6 +18,12 @@ const w2 = $('.work-2'), w2top = w2.position().top;
 const w3 = $('.work-3'), w3top = w3.position().top;
 
 $(window).scroll(function(){
+  if (scrollControl) {
+    window.requestAnimationFrame(fixer);
+  }
+});
+
+function fixer() {
   const st = $(window).scrollTop();
   if (st >= 0 - gutter) { w1.addClass('fix'); }
   else { w1.removeClass('fix'); }
@@ -25,13 +31,15 @@ $(window).scroll(function(){
   else { w2.removeClass('fix'); }
   if (st >= w2top - gutter) { w3.addClass('fix'); }
   else { w3.removeClass('fix'); }
-});
+}
 
 $('#works > div').on("click", function() {
   let   that   = $(this);
-  const scroll = that.offset().top;
-  const time   = Math.abs($(window).scrollTop() - scroll) + 100;
+  const scroll = that.offset().top + gutter;
+  const time   = Math.abs($(window).scrollTop() - scroll) + 300;
+  scrollControl = false;
 
+  $(this).removeClass('fix');
   $('html, body').animate({
     scrollTop: that.offset().top - gutter
   }, time).promise().done(function() {
