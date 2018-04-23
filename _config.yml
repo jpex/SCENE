@@ -44,3 +44,5 @@ sass:
 
 gems:
   - jekyll-babel
+
+permalink: :title
