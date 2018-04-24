@@ -6,6 +6,8 @@ const mqTablet    = 768,
       mqDesktop   = 1280,
       mqLgDesktop = 1700;
 
+let lastClickEl;
+
 const homePage = $('#home-page').length;
 let w1, w2, w3, w1top, w2top, w3top = 0;
 
@@ -40,8 +42,8 @@ function fixer() {
   else { w3.removeClass('fix'); }
 }
 
-const homePageTransition = () => {
-  let   that   = $('.work-1');
+const homePageTransition = (element) => {
+  let   that   = $(element);
   const scroll = that.offset().top + gutter;
   const time   = Math.abs($(window).scrollTop() - scroll) + 300;
   scrollControl = false;
@@ -50,6 +52,8 @@ const homePageTransition = () => {
   $('html, body').animate({
     scrollTop: that.offset().top - gutter
   }, time).promise().done(function() {
+    that.addClass('work-fixed');
+    $('html, body').scrollTop(0);
     $('#works .work').addClass('hide');
     that.removeClass('hide').addClass('grow');
     $('#works').addClass('appear');
@@ -75,9 +79,9 @@ const casePageTransition = () => {
     return 1500;
 }
 
-function transitionManager() {
+function transitionManager(element) {
   if ($('#home-page').length) {
-    homePageTransition();
+    homePageTransition(element);
   } else if ($('#case-page').length) {
     casePageTransition();
   }
@@ -85,9 +89,10 @@ function transitionManager() {
 
 $('document').ready(function(){
   var transEffect = Barba.BaseTransition.extend({
+
       start: function(){
         const that = this;
-        $.when(transitionManager()).done(function() {
+        $.when(transitionManager(lastClickEl)).done(function() {
           setTimeout(function(){
             that.newContainerLoading
               .then(val => {
@@ -104,9 +109,8 @@ $('document').ready(function(){
         nc.css('visibility','visible');
         nc.find('.hide').removeClass('hide');
         nc.fadeIn(0).promise().done(() => {
-
+          nc.addClass('homePageSlide');
           $(_this.oldContainer).fadeOut(0, function(){
-            if (homePage) { nc.addClass('slideInFromBelow'); }
             nc.removeClass('page-fixed');
             _this.done();
           })
@@ -116,5 +120,9 @@ $('document').ready(function(){
   Barba.Pjax.getTransition = function() {
     return transEffect;
   }
+  Barba.Dispatcher.on('linkClicked', (el) => {
+    lastClickEl = el;
+  });
+
   Barba.Pjax.start();
 });

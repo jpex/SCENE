@@ -60,7 +60,7 @@ a {
   transition: 0.3s all $ease;
 }
 
-.slideInFromBelow #home-page ~ .works {
+.homePageSlide #home-page ~ .works {
   animation: slideInFromBelow 0.6s $ease;
 }
 
@@ -98,6 +98,12 @@ h1 {
 
 }
 .fixed { position: fixed; top: 0; }
+
+.work-fixed {
+  position: fixed;
+  left: 0;
+  top: 0;
+}
 
 .fix {
   .attachment {
@@ -164,6 +170,7 @@ h1 {
 }
 
 .hide {
+  transition: none;
   opacity: 0;
   height: 0;
 }
