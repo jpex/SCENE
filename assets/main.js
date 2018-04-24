@@ -36,8 +36,7 @@ function fixer() {
   else { w3.removeClass('fix'); }
 }
 
-function test(element) {
-  console.log("test ele");
+function homePageTransition(element) {
   let   that   = $('.work-1');
   const scroll = that.offset().top + gutter;
   const time   = Math.abs($(window).scrollTop() - scroll) + 300;
@@ -52,18 +51,22 @@ function test(element) {
     $('#works').addClass('appear');
     $('.hud-top').addClass('transparent');
   });
-  return true;
 }
 
 let ele = $('.work-1');
 
-
+function transitionManager() {
+  if ($('#home-page').length) {
+    homePageTransition();
+  } else if ($('#case-page').length) {
+  }
+}
 
 $('document').ready(function(){
   var transEffect = Barba.BaseTransition.extend({
       start: function(){
         const that = this;
-        $.when(test()).done(function() {
+        $.when(transitionManager()).done(function() {
           setTimeout(function(){
             that.newContainerLoading
               .then(val => {

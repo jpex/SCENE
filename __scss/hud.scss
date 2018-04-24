@@ -37,7 +37,15 @@
   &.transparent {
   background: transparent;
   color: #FFF;
-  a { color: #FFF; border-color: rgba(#FFF, 0.8); }
+  a {
+    color: #FFF; border-color: rgba(#FFF, 0.8); }
+  }
+  &.work-1 {
+    background: #c6d5ff;
+    color: #FFF;
+    a {
+      color: #FFF; border-color: rgba(#FFF, 0.8);
+    }
   }
 }
 
