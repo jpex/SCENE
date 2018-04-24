@@ -1,4 +1,8 @@
-
+.barba-container, #barba-wrapper {
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
 
 *, *:before, *:after { box-sizing: border-box; }
 
@@ -78,10 +82,31 @@ h1 {
   //position: fixed;
 }
 
+.page-fixed {
+  position: fixed; top: 0; z-index: 10001; visibility: visible!important; transition: none!important;
+  * { transition: none!important;  }
+
+}
+.fixed { position: fixed; top: 0; z-index: 10000; }
+
 .fix {
   .attachment {
     position: fixed;
     padding: $gutter;
+  }
+}
+
+.no-animation{
+  animation: none;
+}
+
+.stable {
+  .work {
+    position: absolute;
+    z-index: 3;
+    left: 0;
+    right: 0;
+    width: 100%;
   }
 }
 
