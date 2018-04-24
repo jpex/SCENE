@@ -47,6 +47,20 @@
       color: #FFF; border-color: rgba(#FFF, 0.8);
     }
   }
+  &.work-2 {
+    background: #f0e8e5;
+    color: #222;
+    a {
+      color: #222; border-color: rgba(#222, 0.8);
+    }
+  }
+  &.work-3 {
+    background: #ff6151;
+    color: #FFF;
+    a {
+      color: #FFF; border-color: rgba(#FFF, 0.8);
+    }
+  }
 }
 
 .hud-bottom { bottom: 0;  }

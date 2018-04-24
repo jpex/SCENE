@@ -3,9 +3,10 @@
       <div class="barba-container">
         <div id="case-page"></div>
 
-        <div class="hud-top work-1">
+        <div class="hud-top {{ page.work }}">
           <header class="header">
             <div id="logo" class="logo"><a href="/">Jay Gatsby</a></div>
+            <div class="header-title">{{ page.title }}</div>
             <div class="header-links">
               <a href="#">About</a>
               <a href="#">Projects</a>
@@ -14,7 +15,7 @@
         </div>
 
         <div id="works" class="works appear fixed">
-          <div class="work work-1 no-animation">
+          <div class="work {{ page.work }} no-animation">
             <div class="attachment">
               <h1>Hello 2</h1>
             </div>
