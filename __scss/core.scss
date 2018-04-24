@@ -60,6 +60,10 @@ a {
   transition: 0.3s all $ease;
 }
 
+.slideInFromBelow #home-page ~ .works {
+  animation: slideInFromBelow 0.6s $ease;
+}
+
 .work-1 .attachment { background: #c6d5ff; color: #FFF; }
 .work-2 .attachment { background: #f0e8e5; }
 .work-3 .attachment { background: #ff6151; }
@@ -162,4 +166,19 @@ h1 {
 .hide {
   opacity: 0;
   height: 0;
+}
+
+.fade-out {
+  animation: test 0.7s $ease forwards;
+}
+
+@keyframes test {
+  0% {
+    transform: translate3d(0,0,0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate3d(0,-100%,0) scale(0.8);
+    opacity: 0;
+  }
 }

@@ -6,6 +6,9 @@ const mqTablet    = 768,
       mqDesktop   = 1280,
       mqLgDesktop = 1700;
 
+const homePage = $('#home-page').length;
+let w1, w2, w3, w1top, w2top, w3top = 0;
+
 function mq() {
   pageWidth = $(window).width();
   if (pageWidth < mqTablet) { gutter = 40; }
@@ -15,13 +18,14 @@ function mq() {
 
 
 
-  const w1 = $('.work-1'), w1top = w1.position().top;
-  const w2 = $('.work-2'), w2top = w2.position().top;
-  const w3 = $('.work-3'), w3top = w3.position().top;
-
+if (homePage) {
+  w1 = $('.work-1'), w1top = w1.position().top;
+  w2 = $('.work-2'), w2top = w2.position().top;
+  w3 = $('.work-3'), w3top = w3.position().top;
+}
 
 $(window).scroll(function(){
-  if (scrollControl) {
+  if (scrollControl && homePage) {
     window.requestAnimationFrame(fixer);
   }
 });
@@ -36,7 +40,7 @@ function fixer() {
   else { w3.removeClass('fix'); }
 }
 
-function homePageTransition(element) {
+const homePageTransition = () => {
   let   that   = $('.work-1');
   const scroll = that.offset().top + gutter;
   const time   = Math.abs($(window).scrollTop() - scroll) + 300;
@@ -53,12 +57,29 @@ function homePageTransition(element) {
   });
 }
 
-let ele = $('.work-1');
+const casePageTransition = () => {
+  const time = Math.round($(window).scrollTop() / 1.5);
+  $('html, body').delay(100).animate({
+    scrollTop: 0 }, time)
+    .delay(200).promise().done(
+      function() {
+        $('.hud-top').removeClass().addClass('hud-top transparent');
+        $('#works').removeClass('appear fixed').delay(600).promise().done(
+          function() {
+            $('.hud-top').removeClass('transparent');
+            $('#case-page ~ #works .work').removeClass('no-animation').addClass('fade-out');
+          }
+        );
+      }
+    );
+    return 1500;
+}
 
 function transitionManager() {
   if ($('#home-page').length) {
     homePageTransition();
   } else if ($('#case-page').length) {
+    casePageTransition();
   }
 }
 
@@ -85,26 +106,10 @@ $('document').ready(function(){
         nc.fadeIn(0).promise().done(() => {
 
           $(_this.oldContainer).fadeOut(0, function(){
+            if (homePage) { nc.addClass('slideInFromBelow'); }
             nc.removeClass('page-fixed');
             _this.done();
           })
-        });
-      },
-      test2: function() {
-        console.log("test ele");
-        let   that   = $('.work-1');
-        const scroll = that.offset().top + gutter;
-        const time   = Math.abs($(window).scrollTop() - scroll) + 300;
-        scrollControl = false;
-
-        that.removeClass('fix');
-        $('html, body').animate({
-          scrollTop: that.offset().top - gutter
-        }, time).promise().done(function() {
-          $('#works > .work').addClass('hide');
-          that.removeClass('hide').addClass('grow');
-          $('#works').addClass('appear');
-          $('.hud-top').addClass('transparent');
         });
       }
   });
