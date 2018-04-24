@@ -36,23 +36,6 @@ function fixer() {
   else { w3.removeClass('fix'); }
 }
 
-// $('#works > div').on("click", function() {
-//   let   that   = $(this);
-//   const scroll = that.offset().top + gutter;
-//   const time   = Math.abs($(window).scrollTop() - scroll) + 300;
-//   scrollControl = false;
-//
-//   $(this).removeClass('fix');
-//   $('html, body').animate({
-//     scrollTop: that.offset().top - gutter
-//   }, time).promise().done(function() {
-//     $('#works > .work').addClass('hide');
-//     that.removeClass('hide').addClass('grow');
-//     $('#works').addClass('appear');
-//     $('.hud-top').addClass('transparent');
-//   });
-// });
-
 function test(element) {
   console.log("test ele");
   let   that   = $('.work-1');
@@ -94,10 +77,11 @@ $('document').ready(function(){
 
         var _this = this;
         nc.addClass('page-fixed');
+        nc.css('visibility','visible');
         nc.find('.hide').removeClass('hide');
-        nc.fadeIn(20000).promise().done(() => {
-          nc.css('visibility','visible');
-          $(_this.oldContainer).fadeOut(1000, function(){
+        nc.fadeIn(0).promise().done(() => {
+
+          $(_this.oldContainer).fadeOut(0, function(){
             nc.removeClass('page-fixed');
             _this.done();
           })

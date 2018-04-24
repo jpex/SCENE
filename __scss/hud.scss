@@ -19,7 +19,6 @@
 .hud-bottom {
   height: $gutter;
   width: 100%;
-  z-index: 2;
   @media #{$m-ld-min} {
     height: $gutter-lg;
   }

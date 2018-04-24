@@ -80,7 +80,6 @@ a {
   //position: absolute;
   top: $gutter / 2 * -1;
   left: $gutter / 2 * -1;
-  z-index: 65535;
 }
 
 h1 {
@@ -91,10 +90,10 @@ h1 {
 
 .page-fixed {
   visibility: visible; transition: none;
-  * { transition: none;  }
+  .works, .work { transition: none;  }
 
 }
-.fixed { position: fixed; top: 0; z-index: 10000; }
+.fixed { position: fixed; top: 0; }
 
 .fix {
   .attachment {
@@ -110,7 +109,6 @@ h1 {
 .stable {
   .work {
     position: absolute;
-    z-index: 3;
     left: 0;
     right: 0;
     width: 100%;
@@ -120,13 +118,10 @@ h1 {
 .attachment {
   width: 100%;
   height: 100%;
-  z-index: -10;
   top: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  .work-2 & { z-index: -9; }
-  .work-3 & { z-index: -8; }
 }
 
 .header {
@@ -161,7 +156,6 @@ h1 {
 
 .grow {
   position: absolute;
-  z-index: 1;
   top: 0;
 }
 
