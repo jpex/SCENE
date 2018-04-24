@@ -94,12 +94,11 @@ $('document').ready(function(){
 
         var _this = this;
         nc.addClass('page-fixed');
-        // $('#barba-wrapper').addClass('fixed stable');
-        // $(_this.oldContainer).addClass('fixed');
         nc.find('.hide').removeClass('hide');
         nc.fadeIn(20000).promise().done(() => {
           nc.css('visibility','visible');
           $(_this.oldContainer).fadeOut(1000, function(){
+            nc.removeClass('page-fixed');
             _this.done();
           })
         });

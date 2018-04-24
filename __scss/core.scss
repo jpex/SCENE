@@ -41,6 +41,13 @@ a {
     top: $gutter;
     width: calc(100% - #{$gutter} * 2);
   }
+} .works-space {
+  height: 100%;
+  width: 100%;
+  @media #{$m-t-min} {
+    height: calc(100% - #{$gutter} * 2);
+    width: calc(100% - #{$gutter} * 2);
+  }
 }
 
 .work {
@@ -83,8 +90,8 @@ h1 {
 }
 
 .page-fixed {
-  position: fixed; top: 0; z-index: 10001; visibility: visible!important; transition: none!important;
-  * { transition: none!important;  }
+  visibility: visible; transition: none;
+  * { transition: none;  }
 
 }
 .fixed { position: fixed; top: 0; z-index: 10000; }
