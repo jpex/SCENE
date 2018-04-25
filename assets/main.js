@@ -8,8 +8,10 @@ const mqTablet    = 768,
 
 let lastClickEl;
 
-const homePage = $('#home-page').length;
+let homePage = $('#home-page').length;
 let w1, w2, w3, w1top, w2top, w3top = 0;
+
+homePage ? scrollControl = true : scrollControl = false;
 
 function mq() {
   pageWidth = $(window).width();
@@ -27,6 +29,7 @@ if (homePage) {
 }
 
 $(window).scroll(function(){
+  console.log("scrollControl: " + scrollControl + " homePage: " + homePage);
   if (scrollControl && homePage) {
     window.requestAnimationFrame(fixer);
   }
@@ -34,11 +37,24 @@ $(window).scroll(function(){
 
 function fixer() {
   const st = $(window).scrollTop();
-  if (st >= 0 - gutter) { w1.addClass('fix'); }
+  $('.dot').removeClass('active');
+  if (st >= 0 - gutter) {
+    $('.dot').removeClass('active');
+    $('#dot-1').addClass('active');
+    w1.addClass('fix');
+  }
   else { w1.removeClass('fix'); }
-  if (st >= w1top - gutter) { w2.addClass('fix'); }
+  if (st >= w1top - gutter) {
+    $('.dot').removeClass('active');
+    $('#dot-2').addClass('active');
+    w2.addClass('fix');
+  }
   else { w2.removeClass('fix'); }
-  if (st >= w2top - gutter) { w3.addClass('fix'); }
+  if (st >= w2top - gutter) {
+    $('.dot').removeClass('active');
+    $('#dot-3').addClass('active');
+    w3.addClass('fix');
+  }
   else { w3.removeClass('fix'); }
 }
 
@@ -46,7 +62,6 @@ const homePageTransition = (element) => {
   let   that   = $(element);
   const scroll = that.offset().top + gutter;
   const time   = Math.abs($(window).scrollTop() - scroll) + 300;
-  scrollControl = false;
 
   that.removeClass('fix');
   $('html, body').animate({
@@ -122,6 +137,7 @@ $('document').ready(function(){
   }
   Barba.Dispatcher.on('linkClicked', (el) => {
     lastClickEl = el;
+    if ($(el).attr('href') == '/') { homePage = true; }
   });
 
   Barba.Pjax.start();
