@@ -18,6 +18,7 @@ function mq() {
   if (pageWidth < mqTablet) { gutter = 40; }
   else if (pageWidth >= mqTablet && pageWidth < mqLgDesktop) { gutter = 70; }
   else { gutter = 120; }
+  console.log(gutter);
 } mq();
 
 
@@ -29,7 +30,6 @@ if (homePage) {
 }
 
 $(window).scroll(function(){
-  console.log("scrollControl: " + scrollControl + " homePage: " + homePage);
   if (scrollControl && homePage) {
     window.requestAnimationFrame(fixer);
   }
@@ -38,25 +38,25 @@ $(window).scroll(function(){
 function fixer() {
   const st = $(window).scrollTop();
   $('.dot').removeClass('active');
-  if (st >= 0 - gutter) {
+  if (st >= 0 - gutter - 15) {
     $('.dot').removeClass('active');
-    $('#dot-1').addClass('active');
+    $('.dot-1').addClass('active');
     w1.addClass('fix');
   }
   else { w1.removeClass('fix'); }
-  if (st >= w1top - gutter) {
+  if (st >= w1top - gutter - 15) {
     $('.dot').removeClass('active');
-    $('#dot-2').addClass('active');
+    $('.dot-2').addClass('active');
     w2.addClass('fix');
   }
   else { w2.removeClass('fix'); }
-  if (st >= w2top - gutter) {
+  if (st >= w2top - gutter - 15) {
     $('.dot').removeClass('active');
-    $('#dot-3').addClass('active');
+    $('.dot-3').addClass('active');
     w3.addClass('fix');
   }
   else { w3.removeClass('fix'); }
-}
+} fixer();
 
 const homePageTransition = (element) => {
   let   that   = $(element);
@@ -75,6 +75,7 @@ const homePageTransition = (element) => {
     $('.hud-top').addClass('transparent');
   });
 }
+
 
 const casePageTransition = () => {
   const time = Math.round($(window).scrollTop() / 1.5);
@@ -102,6 +103,17 @@ function transitionManager(element) {
   }
 }
 
+$('.dot').on('click', function() {
+  const goTo = $('#works').find(`.work-${$(this).data("work")}`);
+
+  $('html, body').animate({
+    scrollTop: goTo.offset().top - gutter
+  }, 200).promise().done(function() {
+    fixer();
+  });
+
+});
+
 $('document').ready(function(){
   var transEffect = Barba.BaseTransition.extend({
 
@@ -127,6 +139,7 @@ $('document').ready(function(){
           nc.addClass('homePageSlide');
           $(_this.oldContainer).fadeOut(0, function(){
             nc.removeClass('page-fixed');
+            homePage ? fixer() : '';
             _this.done();
           })
         });

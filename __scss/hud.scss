@@ -75,3 +75,77 @@
     height: $gutter-lg;
   }
 }
+
+//
+// Header
+//
+
+.header {
+  align-items: center;
+  display: flex;
+  height: 100%;
+  justify-content: space-between;
+  padding: 0 ($gutter + 8px);
+  @media #{$m-ld-min} {
+    padding: 0 ($gutter-lg);
+  }
+  div { flex: 1; }
+} .header-title {
+  text-align: center;
+  font-family: $font-header;
+  font-size: 1.5em;
+  font-weight: 900;
+} .header-links {
+  text-align: right;
+}
+
+.header-links a {
+  border-bottom: 1px solid #aaa;
+  color: #737373;
+  margin-left: 28px;
+}
+
+.logo {
+  font-family: $font-header;
+  font-size: 1.5em;
+  font-style: italic;
+  font-weight: medium;
+}
+
+.hud-footer {
+  align-items: center;
+  display: flex;
+  height: 100%;
+  justify-content: space-between;
+  padding: 0 ($gutter + 8px);
+  @media #{$m-ld-min} {
+    padding: 0 ($gutter-lg);
+  }
+}
+
+.hud-h-list {
+  display: flex;
+  span {
+    margin-right: 0.8em;
+    color: #666;
+  }
+}
+
+.dots {
+  display: flex;
+}
+.dot {
+  cursor: pointer;
+  margin: 0 0.6em;
+  width: 1em;
+  height: 1em;
+  box-shadow: 0 0 0 2px #999 inset;
+  border-radius: 100%;
+  transition: 0.3s all $ease;
+  &.active { box-shadow: none; transform: scale(1.2); }
+  &:hover { background: #222; box-shadow: none; }
+}
+
+.dot-1 { &.active { background: #c6d5ff;  } }
+.dot-2 { &.active { background: #f0e8e5; } }
+.dot-3 { &.active { background: #ff6151; } }
