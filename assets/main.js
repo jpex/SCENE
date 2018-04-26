@@ -9,7 +9,7 @@ const mqTablet    = 768,
 let lastClickEl;
 
 let homePage = $('#home-page').length;
-let w1, w2, w3, w1top, w2top, w3top = 0;
+let w1, w2, w3, w4, w1top, w2top, w3top, w4top = 0;
 
 homePage ? scrollControl = true : scrollControl = false;
 
@@ -18,7 +18,6 @@ function mq() {
   if (pageWidth < mqTablet) { gutter = 40; }
   else if (pageWidth >= mqTablet && pageWidth < mqLgDesktop) { gutter = 70; }
   else { gutter = 120; }
-  console.log(gutter);
 } mq();
 
 
@@ -27,6 +26,7 @@ if (homePage) {
   w1 = $('.work-1'), w1top = w1.position().top;
   w2 = $('.work-2'), w2top = w2.position().top;
   w3 = $('.work-3'), w3top = w3.position().top;
+  w4 = $('.work-4'), w4top = w4.position().top;
 }
 
 $(window).scroll(function(){
@@ -56,6 +56,12 @@ function fixer() {
     w3.addClass('fix');
   }
   else { w3.removeClass('fix'); }
+  if (st >= w3top - gutter - 15) {
+    $('.dot').removeClass('active');
+    $('.dot-4').addClass('active');
+    w4.addClass('fix');
+  }
+  else { w4.removeClass('fix'); }
 } fixer();
 
 const homePageTransition = (element) => {
@@ -105,10 +111,11 @@ function transitionManager(element) {
 
 $('.dot').on('click', function() {
   const goTo = $('#works').find(`.work-${$(this).data("work")}`);
+  const time = Math.round(Math.abs($(window).scrollTop() - goTo.offset().top - gutter) / 3);
 
   $('html, body').animate({
     scrollTop: goTo.offset().top - gutter
-  }, 200).promise().done(function() {
+  }, time).promise().done(function() {
     fixer();
   });
 

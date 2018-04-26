@@ -61,6 +61,13 @@
       color: #FFF; border-color: rgba(#FFF, 0.8);
     }
   }
+  &.work-4 {
+    background: #dda7f;
+    color: #FFF;
+    a {
+      color: #FFF; border-color: rgba(#FFF, 0.8);
+    }
+  }
 }
 
 .hud-bottom { bottom: 0;  }
@@ -87,7 +94,7 @@
   justify-content: space-between;
   padding: 0 ($gutter + 8px);
   @media #{$m-ld-min} {
-    padding: 0 ($gutter-lg);
+    padding: 0 ($gutter-lg + 8px);
   }
   div { flex: 1; }
 } .header-title {
@@ -119,7 +126,7 @@
   justify-content: space-between;
   padding: 0 ($gutter + 8px);
   @media #{$m-ld-min} {
-    padding: 0 ($gutter-lg);
+    padding: 0 ($gutter-lg + 8px);
   }
 }
 
@@ -149,3 +156,4 @@
 .dot-1 { &.active { background: #c6d5ff;  } }
 .dot-2 { &.active { background: #f0e8e5; } }
 .dot-3 { &.active { background: #ff6151; } }
+.dot-4 { &.active { background: #dda7ff; } }
