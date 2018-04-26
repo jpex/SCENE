@@ -91,12 +91,10 @@
   align-items: center;
   display: flex;
   height: 100%;
-  justify-content: space-between;
-  padding: 0 ($gutter + 8px);
+  padding: 0 ($gutter);
   @media #{$m-ld-min} {
-    padding: 0 ($gutter-lg + 8px);
+    padding: 0 ($gutter-lg);
   }
-  div { flex: 1; }
 } .header-title {
   text-align: center;
   font-family: $font-header;
@@ -104,6 +102,20 @@
   font-weight: 900;
 } .header-links {
   text-align: right;
+} .header-container {
+  animation-delay: 0.4s;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 8px;
+  transform: translate3d(0,100%,0);
+  @media #{$m-ld-min} {
+    padding: 0 8px;
+  }
+  div { flex: 1; }
+} .header-reveal {
+  width: 100%;
 }
 
 .header-links a {
@@ -131,6 +143,7 @@
 }
 
 .hud-h-list {
+  animation-delay: 0.8s;
   display: flex;
   padding: 2px 0;
   transform: translate3d(0,100%,0);

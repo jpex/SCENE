@@ -27,6 +27,7 @@ if (homePage) {
   w2 = $('.work-2'), w2top = w2.position().top;
   w3 = $('.work-3'), w3top = w3.position().top;
   w4 = $('.work-4'), w4top = w4.position().top;
+  fixer();
 }
 
 $(window).scroll(function(){
@@ -62,13 +63,15 @@ function fixer() {
     w4.addClass('fix');
   }
   else { w4.removeClass('fix'); }
-} fixer();
+}
 
 function hudFixer() {
   fixer();
+  $('.header-container').removeClass('reveal-in-down');
   $('.hud-h-list').removeClass('reveal-in');
   setTimeout(function () {
     $('.hud-h-list').addClass('reveal-in');
+    $('.header-container').addClass('reveal-in-down');
   }, 200);
 }
 
@@ -98,6 +101,7 @@ const casePageTransition = () => {
     .delay(200).promise().done(
       function() {
         $('.hud-top').removeClass().addClass('hud-top transparent');
+        $('.header-container').addClass('hide');
         $('#works').removeClass('appear fixed').delay(600).promise().done(
           function() {
             $('.hud-top').removeClass('transparent');

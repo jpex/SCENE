@@ -193,6 +193,16 @@ h1 {
   transform: translate3d(0,100%,0);
 }
 
+.reveal-in-down {
+  animation: reveal-in 0.5s $ease forwards;
+  transform: translate3d(0,100%,0);
+}
+
+.reveal-in-up {
+  animation: reveal-in-up 0.5s $ease forwards;
+  transform: translate3d(0,-100%,0);
+}
+
 .reveal-out-up {
   animation: reveal-out-up 0.5s $ease forwards;
 }
@@ -206,6 +216,16 @@ h1 {
 @keyframes reveal-in {
   0% {
     transform: translate3d(0,100%,0);
+  }
+  100% {
+    transform: translate3d(0,0,0);
+  }
+}
+
+// Arrive from below.
+@keyframes reveal-in-up {
+  0% {
+    transform: translate3d(0,-100%,0);
   }
   100% {
     transform: translate3d(0,0,0);
