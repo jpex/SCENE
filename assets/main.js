@@ -64,11 +64,19 @@ function fixer() {
   else { w4.removeClass('fix'); }
 } fixer();
 
+function hudFixer() {
+  fixer();
+  $('.hud-h-list').removeClass('reveal-in');
+  setTimeout(function () {
+    $('.hud-h-list').addClass('reveal-in');
+  }, 200);
+}
+
 const homePageTransition = (element) => {
   let   that   = $(element);
   const scroll = that.offset().top + gutter;
   const time   = Math.abs($(window).scrollTop() - scroll) + 300;
-
+  $('.hud-h-list').addClass('reveal-out-down');
   that.removeClass('fix');
   $('html, body').animate({
     scrollTop: that.offset().top - gutter
@@ -109,7 +117,7 @@ function transitionManager(element) {
   }
 }
 
-$('.dot').on('click', function() {
+$(document.body).on('click', '.dot' ,function(){
   const goTo = $('#works').find(`.work-${$(this).data("work")}`);
   const time = Math.round(Math.abs($(window).scrollTop() - goTo.offset().top - gutter) / 3);
 
@@ -146,7 +154,7 @@ $('document').ready(function(){
           nc.addClass('homePageSlide');
           $(_this.oldContainer).fadeOut(0, function(){
             nc.removeClass('page-fixed');
-            homePage ? fixer() : '';
+            homePage ? hudFixer() : '';
             _this.done();
           })
         });
